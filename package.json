@@ -20,9 +20,11 @@
     },
     "./package.json": "./package.json"
   },
+  "unpkg": "./dist/index.umd.js",
+  "jsdelivr": "./dist/index.umd.js",
   "scripts": {
     "lint": "eslint --format=sukka .",
-    "build": "bunchee --minify --no-sourcemap",
+    "build": "rollup -c --configPlugin swc3",
     "prerelease": "pnpm run lint && pnpm run build",
     "release": "bumpp --install -r --all --commit \"release: %s\" --tag \"%s\""
   },
@@ -39,16 +41,19 @@
   "author": "SukkaW <https://skk.moe>",
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.3",
     "@swc/core": "^1.15.43",
     "@types/greasemonkey": "^4.0.7",
     "@types/greasemonkey3": "npm:@types/greasemonkey@^3.0.3",
     "bumpp": "^11.1.0",
-    "bunchee": "^6.11.0",
     "earl": "^2.0.0",
     "eslint": "^10.6.0",
     "eslint-config-sukka": "^8.13.5",
     "eslint-formatter-sukka": "^8.13.5",
     "foxts": "^5.8.0",
+    "rollup": "^4.62.2",
+    "rollup-plugin-dts": "^6.4.1",
+    "rollup-plugin-swc3": "^0.12.1",
     "typescript": "^6.0.3"
   },
   "packageManager": "pnpm@11.10.0"

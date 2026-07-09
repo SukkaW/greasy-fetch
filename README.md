@@ -2,6 +2,8 @@
 
 You want to have modern `fetch` API in your userscript, but you also want to bypass the CORS restrictions via `GM.xmlHttpRequest`/`GM_xmlhttpRequest`. Now you can do both with `greasy-fetch`!
 
+> You will still need to add `@connect` permission to your userscript metadata section.
+
 ## Installation
 
 ```bash
@@ -12,15 +14,31 @@ npm install greasy-fetch
 
 ## Usage
 
+### Use with bundler
+
 ```ts
 import { greasyFetch, GreasyFetchResponse } from 'greasy-fetch';
 
 const response: GreasyFetchResponse = await greasyFetch('https://example.com');
 ```
 
-> Constructed `Response` objects don't have proper `url` property, thus `greasy-fetch` provides `GreasyFetchResponse` (which extends `Response`) class with a working `url` property.
+### Use with CDN
 
-You will still need to add `@connect` permission to your userscript.
+```js
+// ==UserScript==
+// @name         my-userscript
+// @grant        GM_xmlhttpRequest
+// @connect      example.com
+// @require      https://cdn.jsdelivr.net/npm/greasy-fetch@1
+// ==/UserScript==
+
+const response = await greasyFetch.greasyFetch('https://example.com');
+console.log(response instanceof greasyFetch.GreasyFetchResponse); // true
+```
+
+### `GreasyFetchResponse`
+
+Constructed `Response` objects (via `new Response()`) don't have proper `url` property, thus `greasy-fetch` implements `GreasyFetchResponse` (which extends `Response`) to provide a working `url` property.
 
 ## License
 
