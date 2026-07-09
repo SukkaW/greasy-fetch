@@ -1,6 +1,6 @@
 {
   "name": "greasy-fetch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "You want to have modern `fetch` API in your userscript, but you also want to bypass the CORS restrictions via `GM.xmlHttpRequest`/`GM_xmlhttpRequest`. Now you can do both with `greasy-fetch`",
   "repository": {
     "url": "https://github.com/SukkaW/greasy-fetch.git"
